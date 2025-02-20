@@ -48,7 +48,6 @@ project(neopixel_pio C CXX ASM)
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
-
 add_executable(neopixel_pio neopixel_pio.c inc/ssd1306_i2c.c)
 
 pico_set_program_name(neopixel_pio "neopixel_pio")
@@ -68,6 +67,7 @@ target_link_libraries(neopixel_pio
 # Add the standard include files to the build
 target_include_directories(neopixel_pio PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}
+  ${CMAKE_CURRENT_LIST_DIR}/inc
 )
 
 # Add any user requested libraries
@@ -75,7 +75,9 @@ target_link_libraries(neopixel_pio
         hardware_pio
         hardware_clocks
         hardware_i2c
+        hardware_dma
+        hardware_timer
+        hardware_adc
         )
 
 pico_add_extra_outputs(neopixel_pio)
-
